@@ -1,11 +1,13 @@
+
 /* =====================================================
    UNDANGAN PERNIKAHAN TEDY WAHYUDI & SITI HAMIMAH
-   Fitur:
+
+   FITUR:
    1. Informasi pengantin
    2. Nama tamu dari URL
    3. Countdown pernikahan
    4. Musik undangan
-   5. Tombol buka undangan
+   5. Animasi pembukaan undangan
    6. Navigasi bawah
    7. Form RSVP Google Spreadsheet
    ===================================================== */
@@ -24,7 +26,6 @@ const WEDDING = {
 
     date: "Minggu, 3 Januari 2027",
 
-    // Sesuaikan dengan jam akad nikah
     isoDate: "2027-01-03T10:00:00+07:00",
 
     holyMatrimony: {
@@ -51,6 +52,7 @@ const WEDDING = {
 function getElement(id) {
     return document.getElementById(id);
 }
+
 
 function setText(id, value) {
     const element = getElement(id);
@@ -164,7 +166,7 @@ function setMapLink(id, url) {
 /* =====================================================
    5. NAMA TAMU DARI URL
    Contoh:
-   domain.com/?to=Andi
+   domain.com/?to=Shafira%20dan%20Partner
    ===================================================== */
 
 function setGuestName() {
@@ -180,10 +182,12 @@ function setGuestName() {
 
     const cleanName = guestName
         .trim()
-        .slice(0, 100);
+        .slice(0, 100) || "Tamu Undangan";
 
+    // Tampilkan nama pada halaman pembuka
     setText("guest-name", cleanName);
 
+    // Isi otomatis nama pada formulir RSVP
     const rsvpName = getElement("rsvp-name");
 
     if (
@@ -280,6 +284,11 @@ function setupMusic() {
 
     if (!audio || !button) return;
 
+    // Mencegah event dipasang dua kali
+    if (button.dataset.musicReady === "true") return;
+
+    button.dataset.musicReady = "true";
+
     button.addEventListener("click", async function () {
 
         if (audio.paused) {
@@ -289,13 +298,12 @@ function setupMusic() {
 
             } catch (error) {
                 console.warn(
-                    "Musik tidak dapat diputar. Periksa file background-song.mp3",
+                    "Musik tidak dapat diputar. Periksa file audio.",
                     error
                 );
             }
 
         } else {
-
             audio.pause();
         }
 
@@ -323,20 +331,37 @@ function setupMusic() {
 function setupOpening() {
 
     const button = getElement("open-invitation");
-
+    const intro = getElement("intro");
     const invitation = getElement("invitation");
 
-    const navigation = getElement("bottom-nav");
+    // Navigasi dicari berdasarkan class agar sesuai HTML
+    const navigation = document.querySelector(".bottom-nav");
 
-    if (!button || !invitation) return;
+    if (!button || !invitation) {
+        console.warn(
+            "Elemen tombol atau isi undangan tidak ditemukan."
+        );
+        return;
+    }
+
+    // Mencegah event klik dipasang berulang
+    if (button.dataset.openingReady === "true") return;
+
+    button.dataset.openingReady = "true";
 
     button.addEventListener(
         "click",
         async function () {
 
+            // Mencegah tombol diklik berkali-kali
             if (button.disabled) return;
 
-            // Tampilkan seluruh isi undangan
+            // Tambahkan class animasi pada halaman pembuka
+            if (intro) {
+                intro.classList.add("opened");
+            }
+
+            // Tampilkan isi undangan
             invitation.classList.add("visible");
 
             invitation.setAttribute(
@@ -344,10 +369,9 @@ function setupOpening() {
                 "false"
             );
 
+            // Ubah status tombol
             button.disabled = true;
-
-            button.textContent =
-                "Undangan Dibuka";
+            button.textContent = "Undangan Dibuka";
 
             // Tampilkan navigasi bawah
             if (navigation) {
@@ -364,23 +388,29 @@ function setupOpening() {
 
                 } catch (error) {
                     console.warn(
-                        "Audio tidak dapat diputar."
+                        "Musik belum dapat diputar.",
+                        error
                     );
                 }
 
                 updateMusicButton();
             }
 
-            // Pindah ke halaman mempelai
-            const coupleSection = getElement("mempelai");
+            // Tunggu animasi pembukaan sebelum scroll
+            window.setTimeout(function () {
 
-            if (coupleSection) {
+                const coupleSection =
+                    getElement("mempelai") ||
+                    document.querySelector(".couple");
 
-                coupleSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
+                if (coupleSection) {
+                    coupleSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+            }, 500);
         }
     );
 }
@@ -404,6 +434,8 @@ function setupNavigation() {
 
                 const targetId = item.dataset.target;
 
+                if (!targetId) return;
+
                 const target = getElement(targetId);
 
                 if (!target) return;
@@ -423,6 +455,7 @@ function setupNavigation() {
     if (!("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver(
+
         function (entries) {
 
             entries.forEach(function (entry) {
@@ -441,6 +474,7 @@ function setupNavigation() {
                 });
             });
         },
+
         {
             rootMargin: "-35% 0px -45% 0px"
         }
@@ -449,9 +483,11 @@ function setupNavigation() {
 
     navItems.forEach(function (item) {
 
-        const section = getElement(
-            item.dataset.target
-        );
+        const targetId = item.dataset.target;
+
+        if (!targetId) return;
+
+        const section = getElement(targetId);
 
         if (section) {
             observer.observe(section);
@@ -470,6 +506,11 @@ function setupRSVP() {
 
     if (!form) return;
 
+    // Mencegah event submit terpasang dua kali
+    if (form.dataset.rsvpReady === "true") return;
+
+    form.dataset.rsvpReady = "true";
+
     form.addEventListener(
         "submit",
         async function (event) {
@@ -484,13 +525,17 @@ function setupRSVP() {
 
             const payload = {
 
-                name: getElement("rsvp-name")?.value.trim() || "",
+                name:
+                    getElement("rsvp-name")?.value.trim() || "",
 
-                attendance: getElement("attendance")?.value || "",
+                attendance:
+                    getElement("attendance")?.value || "",
 
-                pax: getElement("pax")?.value || "1",
+                pax:
+                    getElement("pax")?.value || "1",
 
-                message: getElement("rsvp-message-text")?.value.trim() || ""
+                message:
+                    getElement("rsvp-message-text")?.value.trim() || ""
             };
 
 
@@ -593,18 +638,25 @@ function setupRSVP() {
 
 function initializeWeddingInvitation() {
 
+    // Tampilkan informasi pengantin
     applyWeddingDetails();
 
+    // Ambil nama tamu dari URL
     setGuestName();
 
+    // Jalankan countdown
     updateCountdown();
 
+    // Aktifkan musik
     setupMusic();
 
+    // Aktifkan tombol pembukaan undangan
     setupOpening();
 
+    // Aktifkan navigasi bawah
     setupNavigation();
 
+    // Aktifkan formulir RSVP
     setupRSVP();
 
     // Perbarui countdown setiap detik
@@ -619,83 +671,15 @@ function initializeWeddingInvitation() {
    12. JALANKAN SETELAH HTML SELESAI DIMUAT
    ===================================================== */
 
-if (
-    document.readyState === "loading"
-) {
+if (document.readyState === "loading") {
 
     document.addEventListener(
         "DOMContentLoaded",
-        initializeWeddingInvitation
+        initializeWeddingInvitation,
+        { once: true }
     );
 
 } else {
 
     initializeWeddingInvitation();
-}
-// =====================================================
-// MEMBUKA UNDANGAN
-// =====================================================
-
-function setupInvitation() {
-    const openButton = document.getElementById("open-invitation");
-    const intro = document.getElementById("intro");
-    const invitation = document.getElementById("invitation");
-    const music = document.getElementById("wedding-audio");
-    const nav = document.querySelector(".bottom-nav");
-
-    if (!openButton || !intro || !invitation) {
-        console.warn("Elemen pembuka undangan tidak ditemukan.");
-        return;
-    }
-
-    // Mencegah event dipasang berulang
-    if (openButton.dataset.invitationReady === "true") return;
-    openButton.dataset.invitationReady = "true";
-
-    openButton.addEventListener("click", () => {
-        intro.classList.add("opened");
-
-        invitation.classList.add("visible");
-        invitation.setAttribute("aria-hidden", "false");
-
-        openButton.disabled = true;
-
-        if (nav) {
-            nav.classList.add("visible");
-        }
-
-        if (music) {
-            music.play().catch(() => {});
-        }
-
-        setTimeout(() => {
-            const couple = document.querySelector(".couple");
-
-            if (couple) {
-                couple.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-        }, 500);
-    });
-}
-
-// Jalankan setelah HTML selesai dibaca
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupInvitation);
-} else {
-    setupInvitation();
-}
-
-function setGuestName() {
-    const params = new URLSearchParams(window.location.search);
-
-    const guestName = params.get("to") || params.get("nama");
-
-    const guestElement = document.getElementById("guest-name");
-
-    if (guestElement && guestName) {
-        guestElement.textContent = guestName;
-    }
 }
