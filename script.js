@@ -281,47 +281,53 @@ function setupMusic() {
     const musicButton = document.getElementById("music-toggle");
     const musicIcon = document.getElementById("music-icon");
 
-    if (!audio || !musicButton || !musicIcon) return;
+    if (!audio) return;
 
-    function updateMusicButton() {
+    function updateIcon() {
         if (audio.paused) {
-            musicIcon.textContent = "🔇";
-            musicButton.setAttribute("aria-label", "Nyalakan musik");
-            musicButton.setAttribute("title", "Nyalakan musik");
+            if (musicIcon) musicIcon.textContent = "🔇";
+            if (musicButton) musicButton.title = "Nyalakan musik";
         } else {
-            musicIcon.textContent = "🔊";
-            musicButton.setAttribute("aria-label", "Matikan musik");
-            musicButton.setAttribute("title", "Matikan musik");
+            if (musicIcon) musicIcon.textContent = "🔊";
+            if (musicButton) musicButton.title = "Matikan musik";
         }
     }
 
-    // Coba putar otomatis
+    // Mencoba memutar musik saat halaman pertama kali dibuka
+    audio.volume = 1;
+    audio.muted = false;
+
     audio.play()
-        .then(updateMusicButton)
-        .catch(error => {
-            console.log("Autoplay diblokir browser:", error);
-            updateMusicButton();
+        .then(() => {
+            console.log("Musik berhasil diputar otomatis");
+            updateIcon();
+        })
+        .catch((error) => {
+            console.warn("Browser memblokir autoplay:", error);
+            updateIcon();
         });
 
-    // Kontrol speaker
-    musicButton.addEventListener("click", async () => {
-        try {
-            if (audio.paused) {
-                await audio.play();
-            } else {
-                audio.pause();
+    // Tombol speaker untuk mengontrol musik
+    if (musicButton) {
+        musicButton.onclick = async function () {
+            try {
+                if (audio.paused) {
+                    await audio.play();
+                } else {
+                    audio.pause();
+                }
+            } catch (error) {
+                console.error(error);
             }
-        } catch (error) {
-            console.error("Musik gagal diputar:", error);
-        }
 
-        updateMusicButton();
-    });
+            updateIcon();
+        };
+    }
 
-    audio.addEventListener("play", updateMusicButton);
-    audio.addEventListener("pause", updateMusicButton);
+    audio.addEventListener("play", updateIcon);
+    audio.addEventListener("pause", updateIcon);
 
-    updateMusicButton();
+    updateIcon();
 }
 
 /* =====================================================
