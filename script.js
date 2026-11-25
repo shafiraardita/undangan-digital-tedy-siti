@@ -328,93 +328,73 @@ function setupMusic() {
    8. MEMBUKA UNDANGAN
    ===================================================== */
 
+
 function setupOpening() {
 
     const button = getElement("open-invitation");
     const intro = getElement("intro");
     const invitation = getElement("invitation");
-
-    // Navigasi dicari berdasarkan class agar sesuai HTML
     const navigation = document.querySelector(".bottom-nav");
+    const audio = getElement("wedding-audio");
 
-    if (!button || !invitation) {
-        console.warn(
-            "Elemen tombol atau isi undangan tidak ditemukan."
-        );
-        return;
-    }
+    if (!button || !invitation) return;
 
-    // Mencegah event klik dipasang berulang
     if (button.dataset.openingReady === "true") return;
 
     button.dataset.openingReady = "true";
 
-    button.addEventListener(
-        "click",
-        async function () {
+    button.addEventListener("click", async function () {
 
-            // Mencegah tombol diklik berkali-kali
-            if (button.disabled) return;
+        if (button.disabled) return;
 
-            // Tambahkan class animasi pada halaman pembuka
-            if (intro) {
-                intro.classList.add("opened");
-            }
-
-            // Tampilkan isi undangan
-            invitation.classList.add("visible");
-
-            invitation.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-            // Ubah status tombol
-            button.disabled = true;
-            button.textContent = "Undangan Dibuka";
-
-            // Tampilkan navigasi bawah
-            if (navigation) {
-                navigation.classList.add("visible");
-            }
-
-            // Putar musik setelah tombol diklik
-            const audio = getElement("wedding-audio");
-
-            if (audio) {
-
-                try {
-                    await audio.play();
-
-                } catch (error) {
-                    console.warn(
-                        "Musik belum dapat diputar.",
-                        error
-                    );
-                }
-
-                updateMusicButton();
-            }
-
-            // Tunggu animasi pembukaan sebelum scroll
-            window.setTimeout(function () {
-
-                const coupleSection =
-                    getElement("mempelai") ||
-                    document.querySelector(".couple");
-
-                if (coupleSection) {
-                    coupleSection.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-
-            }, 500);
+        // Buka animasi halaman intro
+        if (intro) {
+            intro.classList.add("opened");
         }
-    );
-}
 
+        // Tampilkan isi undangan
+        invitation.classList.add("visible");
+        invitation.setAttribute("aria-hidden", "false");
+
+        button.disabled = true;
+        button.textContent = "Undangan Dibuka";
+
+        // Tampilkan navigasi bawah
+        if (navigation) {
+            navigation.classList.add("visible");
+        }
+
+        // LANGSUNG PUTAR MUSIK SAAT TOMBOL DIKLIK
+        if (audio) {
+            audio.volume = 0.8;
+
+            try {
+                await audio.play();
+                updateMusicButton();
+
+            } catch (error) {
+                console.warn("Musik belum dapat diputar:", error);
+            }
+        }
+
+        // Scroll ke bagian mempelai
+        setTimeout(function () {
+
+            const couple =
+                getElement("mempelai") ||
+                document.querySelector(".couple");
+
+            if (couple) {
+                couple.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+
+        }, 500);
+
+    });
+}
 
 /* =====================================================
    9. NAVIGASI BAWAH
