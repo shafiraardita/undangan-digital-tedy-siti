@@ -1,4 +1,3 @@
-
 /* =====================================================
    UNDANGAN PERNIKAHAN TEDY WAHYUDI & SITI HAMIMAH
 
