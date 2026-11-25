@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d0c3ae">
+  <title>Undangan Pernikahan | Tedy & Siti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio id="wedding-audio" src="assets/background-song.mp3" loop preload="none"></audio>
+  <button class="music-toggle" id="music-toggle" type="button">♫ <span>Musik jeda</span></button>
+
+  <main>
+    <section class="intro page-section" id="home">
+        <!-- Animasi burung pada halaman pembuka -->
+        <div class="flying-birds" aria-hidden="true">
+            <span class="bird bird-one">🕊</span>
+            <span class="bird bird-two">🕊</span>
+            <span class="bird bird-three">🕊</span>
+        </div>
+      <div class="intro-overlay"></div>
+      <div class="intro-content">
+        <p class="intro-kicker">Our Wedding Invitation</p>
+        <div class="cover-photo">
+          <img src="assets/intro.jpeg" alt="Ilustrasi undangan pernikahan">
+        </div>
+        <p class="intro-subtitle">The Wedding Of</p>
+        <h1 id="intro-couple">Tedy <i>&</i> Siti</h1>
+        <p class="intro-date" id="intro-date">Minggu, 3 Januari 2027</p>
+        <div class="guest">
+          <span>Dear:</span>
+          <strong id="guest-name">Tamu Undangan</strong>
+        </div>
+        <button class="open-button" id="open-invitation" type="button">✉ &nbsp; Buka Undangan</button>
+      </div>
+    </section>
+
+    <div class="invitation" id="invitation" aria-hidden="true">
+      <section class="couple page-section" id="mempelai">
+        <div class="section-inner">
+          <p class="eyebrow">Assalamu’alaikum Wr. Wb.</p>
+          <h2 class="section-title">The Bride & Groom</h2>
+          <p class="section-copy">Dengan memohon rahmat dan ridha Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami:</p>
+
+          <article class="person">
+            <div class="portrait-frame">
+              <img src="assets/bride.jpg" alt="Foto mempelai wanita" class="portrait" loading="lazy">
+            </div>
+            <p class="person-label">Mempelai Wanita</p>
+            <h3 id="bride-name">Siti Hamimah</h3>
+            <p id="bride-parents">Putri dari Bapak YYY dan Ibu YYY</p>
+          </article>
+
+          <div class="ampersand">&</div>
+
+          <article class="person">
+            <div class="portrait-frame">
+              <img src="assets/groom.jpg" alt="Foto mempelai pria" class="portrait" loading="lazy">
+            </div>
+            <p class="person-label">Mempelai Pria</p>
+            <h3 id="groom-name">Tedy Wahyudi</h3>
+            <p id="groom-parents">Putra dari Bapak XXX dan Ibu XXX</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="verse page-section" id="ayat">
+        <div class="section-inner">
+          <p class="eyebrow">Janji Suci</p>
+          <h2 class="script-title">Cinta dalam Ridha Allah</h2>
+          <div class="divider">❦</div>
+          <p class="arabic" lang="ar" dir="rtl">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً ۗاِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ</p>
+          <p class="verse-translation">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.”</p>
+          <p class="verse-ref">QS. AR-RUM AYAT 21</p>
+        </div>
+      </section>
+
+      <section class="event page-section" id="event">
+        <div class="section-inner">
+          <p class="eyebrow">Save The Date</p>
+          <h2 class="script-title">Hari Pernikahan</h2>
+          <div class="countdown-grid">
+            <div class="countdown-item"><strong id="days">000</strong><span>Hari</span></div>
+            <div class="countdown-item"><strong id="hours">00</strong><span>Jam</span></div>
+            <div class="countdown-item"><strong id="minutes">00</strong><span>Menit</span></div>
+            <div class="countdown-item"><strong id="seconds">00</strong><span>Detik</span></div>
+          </div>
+          <p class="event-date">MINGGU, 3 JANUARI 2027</p>
+
+          <article class="event-card">
+            <p class="eyebrow">01 / Akad</p>
+            <h3>Akad Nikah</h3>
+            <p id="holy-time">Pukul [waktu]</p>
+            <p id="holy-venue">[Lokasi akad nikah]</p>
+            <a id="holy-map" class="map-link" href="#">Lihat Lokasi ↗</a>
+          </article>
+
+          <article class="event-card">
+            <p class="eyebrow">02 / Resepsi</p>
+            <h3>Resepsi Pernikahan</h3>
+            <p id="lunch-time">Pukul [waktu]</p>
+            <p id="lunch-venue">[Lokasi resepsi]</p>
+            <a id="lunch-map" class="map-link" href="#">Lihat Lokasi ↗</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="gallery page-section" id="galeri">
+        <div class="section-inner">
+          <p class="eyebrow">Our Memories</p>
+          <h2 class="script-title">Galeri</h2>
+          <p class="section-copy">Beberapa momen bahagia dalam perjalanan kisah kami.</p>
+          <div class="gallery-grid">
+            <img src="assets/intro.jpeg" alt="Galeri foto 1" loading="lazy">
+            <img src="assets/closing.jpeg" alt="Galeri foto 2" loading="lazy">
+            <img src="assets/verse.jpeg" alt="Galeri foto 3" loading="lazy">
+            <img src="assets/Fairytale-Wedding.png" alt="Galeri foto 4" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <section class="rsvp page-section" id="ucapan">
+        <div class="section-inner">
+          <p class="eyebrow">Kindly Respond</p>
+          <h2 class="script-title">Wedding Gift & RSVP</h2>
+          <div class="gift-note">
+            <h3>Wedding Gift</h3>
+            <p>Doa dan kehadiran Anda merupakan hadiah terindah bagi kami.</p>
+            <p class="gift-address">Informasi rekening atau alamat hadiah dapat ditambahkan di sini.</p>
+          </div>
+          <p class="section-copy">Mohon konfirmasi kehadiran dan sampaikan doa untuk kedua mempelai melalui formulir berikut.</p>
+          <form id="rsvp-form">
+            <label for="rsvp-name">Nama</label>
+            <input id="rsvp-name" name="name" type="text" maxlength="100" placeholder="Nama lengkap" required>
+            <label for="attendance">Konfirmasi Kehadiran</label>
+            <select id="attendance" name="attendance" required>
+              <option value="">Pilih konfirmasi</option>
+              <option value="Yes">Ya, saya akan hadir</option>
+              <option value="No">Maaf, saya tidak dapat hadir</option>
+            </select>
+            <label for="pax">Jumlah Tamu</label>
+            <select id="pax" name="pax" required>
+              <option value="1">1 orang</option>
+              <option value="2">2 orang</option>
+              <option value="3">3 orang</option>
+            </select>
+            <label for="rsvp-message-text">Ucapan dan Doa</label>
+            <textarea id="rsvp-message-text" name="message" rows="3" placeholder="Tuliskan ucapan dan doa"></textarea>
+            <button class="submit-button" type="submit">Kirim RSVP</button>
+            <p id="rsvp-message" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="closing page-section" id="penutup">
+
+        <!-- Animasi burung pada halaman penutup -->
+        <div class="flying-birds" aria-hidden="true">
+            <span class="bird bird-one">🕊</span>
+            <span class="bird bird-two">🕊</span>
+            <span class="bird bird-three">🕊</span>
+        </div>
+
+        <div class="closing-overlay"></div>
+        <div class="section-inner">
+          <p class="eyebrow">With Love</p>
+          <h2 class="script-title" id="closing-couple">Tedy & Siti</h2>
+          <p class="closing-copy">Merupakan kebahagiaan bagi kami untuk berbagi hari istimewa ini bersama Anda.</p>
+          <p class="event-date">03 JANUARI 2027</p>
+          <p class="closing-thanks">Terima kasih atas doa dan restu Anda.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Navigasi undangan">
+    <a href="#home" data-target="home" class="nav-item active"><span>⌂</span><small>Home</small></a>
+    <a href="#mempelai" data-target="mempelai" class="nav-item"><span>♧</span><small>Mempelai</small></a>
+    <a href="#event" data-target="event" class="nav-item"><span>▦</span><small>Event</small></a>
+    <a href="#galeri" data-target="galeri" class="nav-item"><span>▧</span><small>Gallery</small></a>
+    <a href="#ucapan" data-target="ucapan" class="nav-item"><span>♡</span><small>Wishes</small></a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

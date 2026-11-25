@@ -1,0 +1,1509 @@
+
+/* =====================================================
+   TEDY & SITI
+   PINK PASTEL ROMANTIC FAIRYTALE WEDDING
+   Responsive Design + Elegant Animation
+   ===================================================== */
+
+:root {
+    --pink-light: #fff5f7;
+    --pink-soft: #fce8ee;
+    --pink-pastel: #f6d5df;
+    --pink-medium: #e9aebe;
+    --pink-rose: #d98da5;
+    --pink-dark: #ad637e;
+    --pink-deep: #8f526a;
+
+    --ivory: #fffaf8;
+    --white: #ffffff;
+    --text-main: #755664;
+    --text-soft: #9b7887;
+    --border-pink: #edc6d2;
+
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "DM Sans", Arial, sans-serif;
+    --script: "Great Vibes", cursive;
+
+    --page-width: 520px;
+    --nav-height: 66px;
+}
+
+/* =====================================================
+   RESET
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f8e9ee;
+    color: var(--text-main);
+    font-family: var(--sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes softFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+@keyframes gentlePulse {
+    0%, 100% {
+        box-shadow: 0 5px 18px #d98da544;
+    }
+
+    50% {
+        box-shadow: 0 5px 28px #d98da588;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes rotateSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: .3;
+        transform: scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    85% {
+        opacity: .7;
+    }
+
+    100% {
+        transform: translateY(100px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes envelopeOpen {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-8px) scale(1.04);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =====================================================
+   UKURAN HALAMAN
+   ===================================================== */
+
+.page-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    width: min(100%, var(--page-width));
+    min-height: 100svh;
+
+    margin: 0 auto;
+
+    padding:
+        64px 22px
+        calc(var(--nav-height) + 28px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.section-inner {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 420px;
+
+    margin: auto;
+}
+
+/* =====================================================
+   JUDUL DAN TEKS
+   ===================================================== */
+
+.eyebrow {
+    margin-bottom: 9px;
+
+    color: var(--pink-dark);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+}
+
+.script-title {
+    margin: 5px 0 20px;
+
+    color: var(--pink-dark);
+
+    font: clamp(43px, 10vw, 57px)/1.05 var(--script);
+}
+
+.section-title {
+    margin: 5px 0 12px;
+
+    color: var(--pink-deep);
+
+    font: 500 clamp(30px, 7vw, 40px)/1.1 var(--serif);
+}
+
+.section-copy {
+    max-width: 360px;
+
+    margin: 0 auto 22px;
+
+    color: var(--text-main);
+
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* =====================================================
+   HALAMAN PEMBUKA
+   ===================================================== */
+
+.intro {
+    color: var(--white);
+
+    background:
+        linear-gradient(
+            180deg,
+            #d98da533,
+            #9f627b66
+        ),
+        url("assets/Fairytale-Wedding.png")
+        center / cover no-repeat;
+
+    padding-top: 42px;
+}
+
+.intro-overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f9dce766,
+            #8c526b55
+        );
+}
+
+.intro-content {
+    width: 100%;
+    max-width: 370px;
+
+    animation: fadeUp 1.2s ease both;
+
+    text-shadow: 0 2px 10px #693d5140;
+}
+
+.intro-kicker {
+    margin-bottom: 18px;
+
+    font: italic 16px var(--serif);
+
+    animation: fadeDown 1s ease both;
+}
+
+.cover-photo {
+    width: clamp(150px, 46vw, 190px);
+    aspect-ratio: 3 / 4;
+
+    margin: 0 auto 17px;
+    padding: 4px;
+
+    border: 2px solid #fff;
+    border-radius: 100px 100px 80px 80px;
+
+    background: #ffffff55;
+
+    box-shadow:
+        0 8px 25px #5d334a55,
+        0 0 0 5px #ffffff35;
+
+    overflow: hidden;
+
+    animation:
+        fadeUp 1.3s ease both,
+        softFloat 5s ease-in-out 1.5s infinite;
+}
+
+.cover-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: inherit;
+}
+
+.intro-subtitle {
+    margin: 0;
+
+    font: italic 16px var(--serif);
+}
+
+.intro h1 {
+    margin: 0;
+
+    color: #fffafc;
+
+    font: 500 clamp(39px, 9vw, 53px)/1.08 var(--script);
+}
+
+.intro h1 i {
+    font-style: normal;
+}
+
+.intro-date {
+    margin: 3px 0 20px;
+
+    font: 16px var(--serif);
+}
+
+.guest {
+    display: grid;
+    gap: 2px;
+
+    margin: 12px 0 17px;
+
+    font: italic 15px var(--serif);
+}
+
+.guest span {
+    font-size: 13px;
+}
+
+.guest strong {
+    font-size: 19px;
+    font-weight: 500;
+}
+
+/* Tombol buka undangan */
+
+.open-button {
+    position: relative;
+    overflow: hidden;
+
+    padding: 12px 27px;
+
+    border: 1px solid #fff;
+    border-radius: 30px;
+
+    color: #fff;
+
+    background: linear-gradient(
+        135deg,
+        var(--pink-rose),
+        var(--pink-dark)
+    );
+
+    box-shadow: 0 5px 20px #7e405b55;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    animation:
+        gentlePulse 3s ease-in-out infinite,
+        fadeUp 1.5s ease both;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.open-button::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 100%;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        #ffffff88,
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    animation: shimmer 4s infinite;
+}
+
+.open-button:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 9px 25px #9f526d77;
+}
+
+.open-button:disabled {
+    opacity: .7;
+}
+
+/* =====================================================
+   ISI UNDANGAN
+   ===================================================== */
+
+.invitation {
+    display: none;
+}
+
+.invitation.visible {
+    display: block;
+
+    animation: fadeIn 1s ease both;
+}
+
+.invitation.visible .page-section {
+    animation: fadeUp .9s ease both;
+}
+
+/* Bingkai halaman */
+
+.couple::before,
+.verse::before,
+.event::before,
+.gallery::before,
+.rsvp::before,
+.closing::before {
+    content: "";
+
+    position: absolute;
+    inset: 12px;
+
+    border: 1px solid #e6a9bd88;
+
+    border-radius: 5px;
+
+    pointer-events: none;
+}
+
+/* =====================================================
+   HALAMAN MEMPELAI
+   ===================================================== */
+
+.couple {
+    background:
+        linear-gradient(#fff7f9dd, #fff7f9dd),
+        url("assets/verse.jpeg")
+        center / cover no-repeat;
+}
+
+.person {
+    max-width: 320px;
+
+    margin: 0 auto;
+}
+
+.portrait-frame {
+    width: clamp(155px, 48vw, 205px);
+    aspect-ratio: 3 / 4;
+
+    margin: auto;
+    padding: 5px;
+
+    overflow: hidden;
+
+    border: 2px solid #fff;
+
+    border-radius: 105px 105px 12px 12px;
+
+    background: var(--pink-soft);
+
+    box-shadow:
+        0 8px 24px #c47d9650,
+        0 0 0 5px #f8dce5aa;
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+
+    animation: fadeUp 1s ease both;
+}
+
+.portrait-frame:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 13px 30px #c47d9670,
+        0 0 0 7px #f8dce5aa;
+}
+
+.portrait {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: inherit;
+}
+
+.person-label {
+    margin: 9px 0 0;
+
+    color: var(--pink-dark);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+.person h3 {
+    margin: 1px 0;
+
+    color: var(--pink-deep);
+
+    font: 500 30px var(--serif);
+}
+
+.person p:last-child {
+    margin: 0 auto;
+
+    color: var(--text-soft);
+
+    font-size: 12px;
+}
+
+.ampersand {
+    margin: 8px 0;
+
+    color: var(--pink-rose);
+
+    font: 42px var(--script);
+
+    animation: softFloat 3s ease-in-out infinite;
+}
+
+/* =====================================================
+   HALAMAN AYAT
+   ===================================================== */
+
+.verse {
+    background:
+        linear-gradient(#fff5f8dd, #fff5f8dd),
+        url("assets/verse.jpeg")
+        center / cover no-repeat;
+}
+
+.verse::after,
+.gallery::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background: #fff5f8aa;
+}
+
+.divider {
+    margin: 15px 0 20px;
+
+    color: var(--pink-rose);
+
+    font-size: 24px;
+
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.arabic {
+    margin: 22px auto;
+
+    color: #9b5872;
+
+    font: clamp(22px, 5vw, 29px)/2.1 Georgia, serif;
+}
+
+.verse-translation {
+    margin: 20px auto;
+
+    color: var(--text-main);
+
+    font: italic 19px/1.8 var(--serif);
+}
+
+.verse-ref {
+    margin-top: 22px;
+
+    color: var(--pink-dark);
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .15em;
+}
+
+/* =====================================================
+   COUNTDOWN DAN ACARA
+   ===================================================== */
+
+.event {
+    background:
+        linear-gradient(135deg, #fff1f5, #f9dce6);
+}
+
+.countdown-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
+
+    max-width: 360px;
+
+    margin: 20px auto 14px;
+}
+
+.countdown-item {
+    display: grid;
+    align-content: center;
+
+    min-height: 66px;
+
+    padding: 7px 2px;
+
+    border: 1px solid #f0cad6;
+    border-radius: 12px;
+
+    background: #fffafb;
+
+    box-shadow: 0 4px 12px #ce8fa522;
+
+    transition: transform .3s ease;
+}
+
+.countdown-item:hover {
+    transform: translateY(-5px);
+}
+
+.countdown-item strong {
+    color: var(--pink-dark);
+
+    font: 600 clamp(24px, 6vw, 32px)/1 var(--serif);
+}
+
+.countdown-item span {
+    color: var(--text-soft);
+
+    font-size: 10px;
+}
+
+.event-date {
+    margin: 15px 0 20px;
+
+    color: var(--pink-dark);
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .15em;
+}
+
+.event-card {
+    margin: 14px auto;
+    padding: 22px 16px;
+
+    border: 1px solid #edc2d0;
+    border-radius: 15px;
+
+    background: #fffafcdd;
+
+    box-shadow: 0 7px 22px #ce8fa522;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 12px 28px #ce8fa544;
+}
+
+.event-card h3 {
+    margin: 4px 0 8px;
+
+    color: var(--pink-deep);
+
+    font: 500 29px var(--serif);
+}
+
+.event-card p:not(.eyebrow) {
+    margin: 4px 0;
+
+    font-size: 12px;
+}
+
+.map-link {
+    display: inline-block;
+
+    margin-top: 10px;
+    padding: 7px 18px;
+
+    border-radius: 20px;
+
+    color: #fff;
+
+    background: var(--pink-rose);
+
+    font-size: 11px;
+    text-decoration: none;
+
+    transition: background .3s ease;
+}
+
+.map-link:hover {
+    background: var(--pink-dark);
+}
+
+.map-link[href="#"] {
+    opacity: .45;
+    pointer-events: none;
+}
+
+/* =====================================================
+   GALERI
+   ===================================================== */
+
+.gallery {
+    background:
+        linear-gradient(#fff7f9dd, #fff7f9dd),
+        url("assets/closing.jpeg")
+        center / cover no-repeat;
+}
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+
+    border: 3px solid #fff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 16px #b56d8533;
+
+    background: var(--pink-soft);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.035);
+
+    box-shadow: 0 9px 25px #b56d8555;
+}
+
+/* =====================================================
+   WEDDING GIFT DAN RSVP
+   ===================================================== */
+
+.rsvp {
+    background:
+        linear-gradient(135deg, #fceaf0, #fff7f9);
+}
+
+.gift-note {
+    margin: 18px auto;
+    padding: 18px;
+
+    border: 1px solid #efc6d3;
+    border-radius: 14px;
+
+    background: #fffafb;
+
+    box-shadow: 0 5px 18px #c47d9622;
+
+    font-family: var(--serif);
+}
+
+.gift-note h3 {
+    margin: 0 0 5px;
+
+    color: var(--pink-dark);
+
+    font-size: 25px;
+}
+
+.gift-note p {
+    margin: 3px 0;
+
+    font-size: 14px;
+}
+
+.gift-address {
+    color: var(--text-soft);
+
+    font-style: italic;
+}
+
+#rsvp-form {
+    display: grid;
+    gap: 8px;
+
+    max-width: 390px;
+
+    margin: 20px auto 0;
+
+    text-align: left;
+}
+
+#rsvp-form label {
+    margin-top: 5px;
+
+    color: var(--pink-deep);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#rsvp-form input,
+#rsvp-form select,
+#rsvp-form textarea {
+    width: 100%;
+    min-height: 44px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #e9bdcb;
+    border-radius: 8px;
+
+    color: var(--text-main);
+
+    background: #fffafb;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+#rsvp-form input:focus,
+#rsvp-form select:focus,
+#rsvp-form textarea:focus {
+    border-color: var(--pink-rose);
+
+    box-shadow: 0 0 0 3px #e9aebe44;
+}
+
+#rsvp-form textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    margin-top: 8px;
+    padding: 13px;
+
+    border: none;
+    border-radius: 9px;
+
+    color: #fff;
+
+    background: linear-gradient(
+        135deg,
+        var(--pink-rose),
+        var(--pink-dark)
+    );
+
+    box-shadow: 0 5px 15px #bd748d44;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+
+    transition: transform .3s ease;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+}
+
+.submit-button:disabled {
+    opacity: .6;
+}
+
+#rsvp-message {
+    min-height: 20px;
+
+    color: var(--pink-dark);
+
+    font-size: 12px;
+    text-align: center;
+}
+
+/* =====================================================
+   HALAMAN PENUTUP
+   ===================================================== */
+
+.closing {
+    color: #fff;
+
+    background:
+        linear-gradient(#a75e7a66, #a75e7a88),
+        url("assets/closing.jpeg")
+        center / cover no-repeat;
+}
+
+.closing-overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background: #9b597466;
+}
+
+.closing .eyebrow,
+.closing .script-title {
+    color: #fff8fb;
+}
+
+.closing .script-title {
+    margin: 25px 0;
+
+    font-size: clamp(55px, 13vw, 76px);
+}
+
+.closing-copy {
+    max-width: 330px;
+
+    margin: auto;
+
+    color: #fff7fa;
+
+    font: 19px/1.8 var(--serif);
+}
+
+.closing-thanks {
+    margin-top: 35px;
+
+    color: #fff7fa;
+
+    font: italic 17px var(--serif);
+}
+
+/* =====================================================
+   TOMBOL MUSIK
+   ===================================================== */
+
+.music-toggle {
+    position: fixed;
+    z-index: 50;
+
+    top: 12px;
+
+    right: max(
+        12px,
+        calc((100vw - var(--page-width)) / 2 + 12px)
+    );
+
+    padding: 9px 15px;
+
+    border: 1px solid #ffffffaa;
+    border-radius: 25px;
+
+    color: #fff;
+
+    background: #bb718bdc;
+
+    box-shadow: 0 4px 15px #8f526a33;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    animation: gentlePulse 4s ease-in-out infinite;
+
+    backdrop-filter: blur(8px);
+}
+
+/* =====================================================
+   NAVIGASI BAWAH — FIX POSISI DAN RESPONSIVE
+   ===================================================== */
+
+.bottom-nav {
+    position: fixed;
+    z-index: 100;
+
+    /* Posisi navigasi */
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /* Ukuran navigasi */
+    width: 100%;
+    max-width: 520px;
+    min-height: 66px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Susunan menu */
+    display: none;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+
+    padding: 8px 5px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+
+    /* Tampilan */
+    background: rgba(217, 148, 169, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-bottom: none;
+    border-radius: 17px 17px 0 0;
+
+    box-shadow: 0 -5px 20px rgba(159, 82, 109, 0.18);
+
+    /* Pastikan tidak bergeser */
+    transform: none;
+    box-sizing: border-box;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.bottom-nav.visible {
+    display: grid;
+    animation: fadeUp 0.6s ease both;
+}
+
+/* Setiap menu */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+    gap: 3px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+/* Lingkaran ikon */
+.nav-item span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 29px;
+    height: 29px;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+
+    font-size: 16px;
+
+    transition: all 0.3s ease;
+}
+
+/* Tulisan menu */
+.nav-item small {
+    display: block;
+
+    color: #ffffff;
+
+    font-family: var(--serif);
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+/* Menu aktif */
+.nav-item.active span {
+    color: var(--pink-dark);
+    background: #ffffff;
+
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+/* Efek saat disentuh */
+.nav-item:active {
+    transform: scale(0.92);
+}
+
+/* HP berukuran kecil */
+@media (max-width: 360px) {
+    .bottom-nav {
+        min-height: 62px;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    .nav-item span {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+    }
+
+    .nav-item small {
+        font-size: 9px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 700px) {
+    .bottom-nav {
+        bottom: 18px;
+        border-radius: 17px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+    }
+}
+
+/* =====================================================
+   RESPONSIVE TABLET DAN DESKTOP
+   ===================================================== */
+
+@media (min-width: 700px) {
+
+    .page-section,
+    .invitation {
+        max-width: var(--page-width);
+    }
+
+    .intro {
+        margin-top: 18px;
+
+        min-height: min(900px, 100svh);
+    }
+
+    .bottom-nav {
+        bottom: 18px;
+
+        border-radius: 17px;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE HP KECIL
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+    .page-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .countdown-grid {
+        gap: 5px;
+    }
+
+    .countdown-item {
+        min-height: 60px;
+    }
+
+    .script-title {
+        font-size: 44px;
+    }
+
+    .section-copy {
+        font-size: 12px;
+    }
+}
+
+/* =====================================================
+   AKSESIBILITAS ANIMASI
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* =====================================================
+   ANIMASI FOTO PENGANTIN SETELAH UNDANGAN DIBUKA
+   ===================================================== */
+
+/* Foto awalnya belum bergerak */
+.person .portrait-frame {
+    opacity: 0;
+    transform: translateY(35px) scale(.92);
+}
+
+/* Animasi ketika undangan sudah dibuka */
+.invitation.visible .person .portrait-frame {
+    animation:
+        portraitEnter 1.2s cubic-bezier(.2,.75,.3,1) forwards,
+        portraitFloat 4s ease-in-out 1.2s infinite;
+}
+
+/* Foto pertama */
+.invitation.visible .person:nth-of-type(1) .portrait-frame {
+    animation-delay: .2s, 1.4s;
+}
+
+/* Foto kedua */
+.invitation.visible .person:nth-of-type(2) .portrait-frame {
+    animation-delay: .8s, 2s;
+}
+
+@keyframes portraitEnter {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.88);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes portraitFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-5px) rotate(.5deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(-4px) rotate(-.5deg);
+    }
+}
+
+/* Nama pengantin ikut muncul */
+.invitation.visible .person-label,
+.invitation.visible .person h3,
+.invitation.visible .person p {
+    animation: fadeUp 1s ease both;
+}
+
+.invitation.visible .person:nth-of-type(1) .person-label {
+    animation-delay: .5s;
+}
+
+.invitation.visible .person:nth-of-type(2) .person-label {
+    animation-delay: 1.1s;
+}
+
+/* =====================================================
+   BURUNG TERBANG
+   ===================================================== */
+
+.flying-birds {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bird {
+    position: absolute;
+    left: -50px;
+
+    display: block;
+
+    color: #fff;
+    font-size: 20px;
+
+    opacity: 0;
+
+    filter: drop-shadow(0 2px 4px #70445844);
+
+    animation: birdFly 13s linear infinite;
+}
+
+.bird-one {
+    top: 17%;
+    font-size: 20px;
+    animation-delay: 0s;
+}
+
+.bird-two {
+    top: 28%;
+    font-size: 15px;
+    animation-delay: 4s;
+}
+
+.bird-three {
+    top: 40%;
+    font-size: 17px;
+    animation-delay: 8s;
+}
+
+@keyframes birdFly {
+    0% {
+        left: -50px;
+        opacity: 0;
+        transform: translateY(15px) rotate(-10deg);
+    }
+
+    10% {
+        opacity: .85;
+    }
+
+    45% {
+        transform: translateY(-22px) rotate(5deg);
+    }
+
+    80% {
+        opacity: .85;
+    }
+
+    100% {
+        left: 110%;
+        opacity: 0;
+        transform: translateY(-5px) rotate(-5deg);
+    }
+}
+
+/* =====================================================
+   BUNGA DI SUDUT HALAMAN
+   Menggunakan gambar yang sudah tersedia di assets
+   ===================================================== */
+
+.couple::after,
+.event::after,
+.rsvp::after {
+    content: "";
+
+    position: absolute;
+    z-index: 1;
+
+    right: -28px;
+    bottom: 55px;
+
+    width: clamp(105px, 30vw, 150px);
+    aspect-ratio: 1;
+
+    background-image: url("assets/floral-mixed.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: .20;
+
+    pointer-events: none;
+
+    animation: flowerFloat 6s ease-in-out infinite;
+}
+
+.verse::before {
+    background-image: url("assets/floral-lily.png");
+    background-size: 115px auto;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
+
+@keyframes flowerFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+/* =====================================================
+   TRANSISI SAAT TOMBOL BUKA UNDANGAN DIKLIK
+   ===================================================== */
+
+.intro {
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.intro.opened {
+    opacity: .4;
+    transform: scale(.98);
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 380px) {
+    .bird {
+        font-size: 15px;
+    }
+
+    .couple::after,
+    .event::after,
+    .rsvp::after {
+        width: 100px;
+        opacity: .16;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bird,
+    .person .portrait-frame,
+    .couple::after,
+    .event::after,
+    .rsvp::after {
+        animation: none !important;
+    }
+}
+/* Bingkai floral pink */
+.verse {
+    position: relative;
+    background-color: #fffafa;
+    background-image: url("assets/frame-pink.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* Konten tetap berada di tengah bingkai */
+.verse .section-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 75px 25px;
+}
