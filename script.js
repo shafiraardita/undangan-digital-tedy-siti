@@ -687,3 +687,15 @@ if (document.readyState === "loading") {
 } else {
     setupInvitation();
 }
+
+function setGuestName() {
+    const params = new URLSearchParams(window.location.search);
+
+    const guestName = params.get("to") || params.get("nama");
+
+    const guestElement = document.getElementById("guest-name");
+
+    if (guestElement && guestName) {
+        guestElement.textContent = guestName;
+    }
+}
