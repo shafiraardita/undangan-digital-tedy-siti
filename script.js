@@ -277,49 +277,80 @@ function updateMusicButton() {
 
 
 function setupMusic() {
-
     const audio = getElement("wedding-audio");
-    const button = getElement("music-toggle");
+    const musicButton = getElement("music-toggle");
 
-    if (!audio || !button) return;
+    if (!audio) return;
 
-    // Mencegah event dipasang dua kali
-    if (button.dataset.musicReady === "true") return;
+    // Memperbarui tampilan tombol musik
+    function updateMusicButton() {
+        if (!musicButton) return;
 
-    button.dataset.musicReady = "true";
-
-    button.addEventListener("click", async function () {
+        const label = musicButton.querySelector("span");
 
         if (audio.paused) {
-
-            try {
-                await audio.play();
-
-            } catch (error) {
-                console.warn(
-                    "Musik tidak dapat diputar. Periksa file audio.",
-                    error
-                );
-            }
-
+            musicButton.classList.remove("playing");
+            if (label) label.textContent = "Musik jeda";
         } else {
-            audio.pause();
+            musicButton.classList.add("playing");
+            if (label) label.textContent = "Musik aktif";
         }
+    }
 
-        updateMusicButton();
+    // Mencoba memutar musik otomatis saat halaman dibuka
+    async function playMusic() {
+        try {
+            await audio.play();
+            updateMusicButton();
+            return true;
+        } catch (error) {
+            console.log("Autoplay diblokir browser:", error);
+            return false;
+        }
+    }
+
+    // Jika autoplay diblokir, mulai musik saat interaksi pertama
+    playMusic().then((success) => {
+        if (!success) {
+            const resumeMusic = () => {
+                if (audio.paused) {
+                    audio.play()
+                        .then(updateMusicButton)
+                        .catch(error => {
+                            console.log("Musik belum dapat diputar:", error);
+                        });
+                }
+            };
+
+            document.addEventListener("pointerdown", resumeMusic, {
+                once: true
+            });
+
+            document.addEventListener("keydown", resumeMusic, {
+                once: true
+            });
+        }
     });
 
-    audio.addEventListener(
-        "play",
-        updateMusicButton
-    );
+    // Tombol untuk mengaktifkan dan menjeda musik
+    if (musicButton) {
+        musicButton.addEventListener("click", async () => {
+            if (audio.paused) {
+                try {
+                    await audio.play();
+                } catch (error) {
+                    console.log("Gagal memutar musik:", error);
+                }
+            } else {
+                audio.pause();
+            }
 
-    audio.addEventListener(
-        "pause",
-        updateMusicButton
-    );
+            updateMusicButton();
+        });
+    }
 
-    updateMusicButton();
+    audio.addEventListener("play", updateMusicButton);
+    audio.addEventListener("pause", updateMusicButton);
 }
 
 
